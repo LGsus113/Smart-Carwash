@@ -1,0 +1,76 @@
+---
+import ButtonContent from "@src/components/comun/button-content.astro";
+
+import SectionScheme from "@src/components/comun/section-scheme.astro";
+import Roller from "@src/assets/icon-svg/roller.svg";
+import Security from "@src/assets/icon-svg/security.svg";
+import Spray from "@src/assets/icon-svg/spray.svg";
+import Diamond from "@src/assets/icon-svg/diamond.svg";
+import Car from "@src/assets/icon-svg/car.svg";
+import Tool from "@src/assets/icon-svg/tool.svg";
+
+const DATA = [
+  {
+    icon: Roller,
+    title: "Planchado y Pintura",
+    description: "Reparación profesional de abolladuras y pintura",
+    link: "#",
+  },
+  {
+    icon: Security,
+    title: "Polarizado",
+    description: "Proteción con películas de alta calidad",
+    link: "#",
+  },
+  {
+    icon: Spray,
+    title: "Tapizado y Limpieza",
+    description: "Limpieza profunda del interior",
+    link: "#",
+  },
+  {
+    icon: Diamond,
+    title: "Pulido y Abrillantado",
+    description: "Acabado brillante y protección duradera",
+    link: "#",
+  },
+  {
+    icon: Car,
+    title: "Descontaminación",
+    description: "Eliminación de residuos metálicos",
+    link: "#",
+  },
+  {
+    icon: Tool,
+    title: "Mecánica Básica",
+    description: "Mantenimiento preventivo",
+    link: "#",
+  },
+];
+---
+
+<SectionScheme
+  id="servicios"
+  className="flex-col items-center justify-center my-20"
+>
+  <h1 class="text-4xl font-bungee-inline tracking-tight mb-10">
+    Nuestros Servicios
+  </h1>
+  <div class="w-4/5 h-auto grid grid-cols-3 gap-6 p-4 mb-10">
+    {
+      DATA.map((item) => (
+        <a href={item.link}>
+          <div class="bg-white rounded-xl p-6 flex flex-col gap-2 border border-gray-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-100 ease-in">
+            <item.icon class="size-12 text-primary" />
+            <h2 class="font-bungee font-light text-xl text-gray-900">
+              {item.title}
+            </h2>
+            <p class="text-gray-600">{item.description}</p>
+            <span class="text-secondary font-semibold">ver más →</span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+  <ButtonContent title="Ver todos" />
+</SectionScheme>

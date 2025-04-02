@@ -1,0 +1,48 @@
+---
+import logoImage from "@src/assets/marca3.webp";
+import ListLink from "@src/components/header/list-link.astro";
+import LinkA from "@src/components/comun/anchor.astro";
+import Hovered from "@src/components/header/hovered.astro";
+
+const LINKS = [
+  {
+    label: "Inicio",
+    href: "#",
+  },
+  {
+    label: "Servicios",
+    href: "#",
+  },
+  {
+    label: "Conocenos",
+    href: "#",
+  },
+  {
+    label: "Contacto",
+    href: "#",
+  },
+];
+---
+
+<div
+  id="linkers"
+  class="w-full h-auto fixed z-50 flex items-center justify-center bg-black/90"
+>
+  <div class="w-4/5 h-24 flex items-center justify-between">
+    <div class="w-auto h-24 flex justify-center items-center group">
+      <LinkA href="https://www.facebook.com/share/15xeSc1J6U/">
+        <img
+          src={logoImage.src}
+          alt="logo de la marca"
+          class="w-[325px] h-auto drop-shadow-[0_0_1px_rgba(250,250,250,0.5)] group-hover:scale-105 group-hover:drop-shadow-[0_0_1px_rgba(250,250,250)] transition-all duration-[0.03s] ease-in-out"
+        />
+      </LinkA>
+    </div>
+    <nav
+      class="w-auto h-full flex justify-center items-center text-white text-xl font-bungee"
+    >
+      <ListLink items={LINKS} />
+      <Hovered items="#linkers nav li" container="#linkers" />
+    </nav>
+  </div>
+</div>

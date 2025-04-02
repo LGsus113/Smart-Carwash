@@ -1,0 +1,35 @@
+---
+import SectionScheme from "@src/components/comun/section-scheme.astro";
+import ButtonContent from "@src/components/comun/button-content.astro";
+import Mascara from "@src/components/comun/mascara.astro";
+
+import Auto from "@src/assets/auto.avif";
+---
+
+<SectionScheme
+  id=""
+  className="w-full h-[750px] flex-col items-center overflow-hidden relative"
+>
+  <img
+    src={Auto.src}
+    alt="auto"
+    class="w-full h-full object-cover object-center"
+  />
+  <Mascara />
+  <div
+    class="absolute z-10 w-4/5 h-full flex flex-col justify-center items-start"
+  >
+    <div class="size-1/2 pt-10">
+      <h1
+        class="text-accent text-6xl leading-16 font-bungee-inline font-bold mb-2"
+      >
+        Auto Shine - Brillo y Protección para tu Vehículo
+      </h1>
+      <p class="text-accent text-3xl tracking-tight leading-8 mb-7">
+        Expertos en cuidado automotriz, ofreciendo servicios premium para
+        mantener tu vehículo en perfectas condiciones.
+      </p>
+      <ButtonContent title="Reserve Ahora" />
+    </div>
+  </div>
+</SectionScheme>
