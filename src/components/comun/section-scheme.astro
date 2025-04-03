@@ -7,6 +7,6 @@ interface Props {
 const { id, className } = Astro.props;
 ---
 
-<section id={id} class={`flex ${className}`}>
+<section id={id} class:list={["flex", className]}>
   <slot />
 </section>

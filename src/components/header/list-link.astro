@@ -7,12 +7,20 @@ interface ListProps {
 const { items } = Astro.props as {
   items: ListProps[];
 };
+
+const active = (nombre: string) =>
+  Astro.url.pathname === nombre && "not-hover:text-primary";
 ---
 
 <ul class="size-auto flex">
   {
     items.map((item) => (
-      <li class="flex hover:text-black transition-all duration-300 ease-in-out">
+      <li
+        class:list={[
+          active(item.href),
+          "flex hover:text-black transition-all duration-300 ease-in-out",
+        ]}
+      >
         <a href={item.href} class="px-4 py-2">
           {item.label}
         </a>

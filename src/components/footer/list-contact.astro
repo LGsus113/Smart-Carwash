@@ -16,10 +16,17 @@ const { class: className, title, items, description } = Astro.props as Props;
     items &&
       items.map((item) => (
         <article
-          class={`flex items-center text-[#8d8d8d] gap-2 my-3 ${item.link ? "group" : ""} ${className}`}
+          class:list={[
+            "flex items-center text-[#8d8d8d] gap-2 my-3",
+            item.link && "group",
+            className,
+          ]}
         >
           <item.icon
-            class={`${item.link ? "group-hover:text-primary" : ""} transition-colors duration-200`}
+            class={[
+              item.link && "group-hover:text-primary",
+              "transition-colors duration-200",
+            ]}
           />
           {item.link ? (
             <a
