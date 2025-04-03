@@ -1,13 +1,24 @@
 ---
 interface Props {
   title: string;
+  variant?: "primary" | "secondary";
 }
 
-const { title } = Astro.props as Props;
+const { title, variant = "primary" } = Astro.props as Props;
+
+const className = `
+  relative overflow-hidden text-2xl font-bungee font-bold mb-4 px-3 py-2 rounded-lg shadow-inner hover:cursor-pointer group
+  ${
+    variant === "primary"
+      ? "text-[#131413] bg-primary border border-primary shadow-white/90"
+      : "text-white bg-black shadow-gray-400"
+  }
+`;
 ---
 
-<button
-  class="text-[#131413] text-2xl font-bungee font-bold mb-4 px-3 py-2 bg-primary rounded-lg shadow-inner shadow-[#fff099] border border-primary hover:cursor-pointer transition-all duration-150 ease-in-out"
->
+<button class={className}>
   {title}
+  <span
+    class="absolute z-10 -top-10 bottom-0 left-[-120%] w-[100px] h-[130px] bg-white/30 -rotate-[30deg] opacity-0 transition-all duration-500 ease-out group-hover:left-[120%] group-hover:opacity-100"
+  ></span>
 </button>

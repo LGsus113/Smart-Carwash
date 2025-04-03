@@ -26,14 +26,14 @@ const images = [
 ];
 ---
 
-<SectionScheme id="" className="w-full h-[550px] p-2">
-  <div class="size-full flex gap-2 rounded-xl overflow-hidden">
+<SectionScheme id="galeria" className="w-full h-[550px] p-2">
+  <div class="size-full flex gap-2 rounded-xl overflow-hidden group">
     {
       images.map((image, index) => (
         <img
           src={image.src}
           alt={`Imagen ${index + 1} de galeria`}
-          class="w-0 grow object-cover opacity-80 hover:cursor-crosshair hover:opacity-100 hover:grow-[5] hover:contrast-125 transition-all duration-200 ease-in-out"
+          class="w-0 grow object-cover brightness-100 contrast-100 transition-all duration-200 ease-in-out group-hover:brightness-50 group-hover:contrast-90 hover:brightness-100 hover:contrast-125 hover:grow-[5]"
         />
       ))
     }

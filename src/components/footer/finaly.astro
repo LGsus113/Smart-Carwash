@@ -1,0 +1,65 @@
+---
+import SectionScheme from "@src/components/comun/section-scheme.astro";
+import Separata from "@src/components/footer/separata.astro";
+import Contenedor from "@src/components/comun/contener-div.astro";
+import ListContact from "@src/components/footer/list-contact.astro";
+
+import FB from "@src/assets/redes-svg/fb.svg";
+import Email from "@src/assets/redes-svg/email.svg";
+import Instagram from "@src/assets/redes-svg/instagram.svg";
+import Phone from "@src/assets/redes-svg/phone.svg";
+import Ubication from "@src/assets/redes-svg/ubication.svg";
+
+const CONTACT_INFO = [
+  {
+    icon: Ubication,
+    label: "Av. Principal #123",
+  },
+  {
+    icon: Phone,
+    label: "+51 999 999 999",
+  },
+  {
+    icon: Email,
+    label: "info@autoshine.com",
+  },
+];
+
+const SOCIAL_MEDIA = [
+  {
+    icon: FB,
+    label: "Facebook",
+    link: "https://www.facebook.com/share/15xeSc1J6U/",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    link: "https://www.instagram.com/",
+  },
+];
+---
+
+<SectionScheme
+  id="final"
+  className="w-full h-auto flex-col items-center justify-center max-w-[2000px] bg-black"
+>
+  <Contenedor class="gap-40 justify-between mt-10 text-center">
+    <ListContact
+      title="Smart Carwash"
+      description="Expertos en cuidado automotriz, ofreciendo servicios premium desde N-####."
+    />
+    <ListContact
+      title="Contacto"
+      description="Si deseas ubicarnos, todos nuestros datos oficiales aquí abajo."
+      class="justify-center"
+      items={CONTACT_INFO}
+    />
+    <ListContact
+      title="Síguenos"
+      description="Nuestras redes oficiales a tu disposición, síguenos para mantenerte al día."
+      class="justify-center"
+      items={SOCIAL_MEDIA}
+    />
+  </Contenedor>
+  <Separata />
+</SectionScheme>

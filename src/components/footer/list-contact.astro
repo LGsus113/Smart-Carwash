@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  class?: string;
+  items?: { icon: any; label: string; link?: string }[];
+}
+
+const { class: className, title, items, description } = Astro.props as Props;
+---
+
+<div class="text-white flex-grow basis-0">
+  <h1 class="font-bungee font-light text-2xl mb-5">{title}</h1>
+  <p class="text-[#8d8d8d] text-left pb-3">{description}</p>
+  {
+    items &&
+      items.map((item) => (
+        <article
+          class={`flex items-center text-[#8d8d8d] gap-2 my-3 ${item.link ? "group" : ""} ${className}`}
+        >
+          <item.icon
+            class={`${item.link ? "group-hover:text-primary" : ""} transition-colors duration-200`}
+          />
+          {item.link ? (
+            <a
+              href={item.link}
+              target="_blank"
+              class="group-hover:text-primary transition-colors duration-200"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span>{item.label}</span>
+          )}
+        </article>
+      ))
+  }
+</div>
