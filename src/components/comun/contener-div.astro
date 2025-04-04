@@ -1,11 +1,12 @@
 ---
 interface Props {
   class?: string;
+  varible?: "flex" | "grid";
 }
 
-const { class: className } = Astro.props as Props;
+const { class: className, varible = "flex" } = Astro.props as Props;
 ---
 
-<div class:list={["w-4/5 h-auto flex", className]}>
+<div class:list={["w-4/5 h-auto", className, varible]}>
   <slot />
 </div>

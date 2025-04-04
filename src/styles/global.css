@@ -18,8 +18,13 @@ body {
   --color-primary: #facc15;
   --color-secondary: #de9400;
   --color-accent: #ebe9e3;
+  --color-uni-secondary: #8d8d8d;
 
   --font-racing: "Racing Sans One", sans-serif;
   --font-bungee: "Bungee", serif;
   --font-bungee-inline: "Bungee Inline", sans-serif;
+}
+
+.realce:hover .afectado {
+  transform: scale(1.05);
 }
