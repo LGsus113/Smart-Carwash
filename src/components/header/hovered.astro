@@ -4,69 +4,67 @@ interface Props {
   container: string;
 }
 
-const props: Props = Astro.props;
+const { items, container } = Astro.props;
 ---
 
 <div
-  data-items={props.items}
-  data-container={props.container}
-  class="hover-menu absolute bg-primary backdrop-blur-sm rounded-md left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-300 ease-in-out opacity-0 -z-10 shadow-inner shadow-white/90"
+  data-items={items}
+  data-container={container}
+  class="hover-menu absolute bg-primary backdrop-blur-sm rounded-md left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-200 ease-in-out opacity-0 -z-10 shadow-inner shadow-white/90"
 >
 </div>
 
 <script>
-  const menus = document.querySelectorAll(".hover-menu");
+  import { $, $$ } from "@src/utils/dom-selector";
 
-  menus.forEach((menu: any) => {
-    if (!menu) {
-      console.error("No se encontró el menú.");
-      return;
-    } else {
-      const itemsSelector = menu.getAttribute("data-items");
-      const containerSelector = menu.getAttribute("data-container");
+  const handleMouseEnter = (
+    menu: HTMLElement,
+    header: HTMLElement,
+    item: HTMLElement
+  ) => {
+    const rect = item.getBoundingClientRect();
+    const headerRect = header.getBoundingClientRect();
 
-      if (!itemsSelector || !containerSelector) {
-        console.error("No se encontraron los atributos.");
-        return;
-      } else {
-        const listItem = document.querySelectorAll(itemsSelector);
-        const header = document.querySelector(containerSelector);
+    const left = rect.left - headerRect.left;
+    const top = rect.top - headerRect.top;
 
-        if (!header || listItem.length === 0) {
-          console.error(
-            "No se encontró el contenedor o los elementos de la lista."
-          );
-          return;
-        } else {
-          listItem.forEach((item: any) => {
-            item.addEventListener("mouseenter", () => {
-              const rect = item.getBoundingClientRect();
-              const headerRect = header.getBoundingClientRect();
+    menu.style.setProperty("--left", `${left}px`);
+    menu.style.setProperty("--top", `${top}px`);
+    menu.style.setProperty("--width", `${rect.width}px`);
+    menu.style.setProperty("--height", `${rect.height}px`);
 
-              const left = rect.left - headerRect.left;
-              const top = rect.top - headerRect.top;
+    menu.style.opacity = "1";
+    menu.style.visibility = "visible";
+  };
 
-              console.log("Menu encontrado:", left);
-              console.log("Menu encontrado:", top);
-              console.log("Menu encontrado:", rect.width);
-              console.log("Menu encontrado:", rect.height);
+  const handleMouseLeave = (menu: HTMLElement) => {
+    menu.style.opacity = "0";
+    menu.style.visibility = "hidden";
+  };
 
-              menu.style.setProperty("--left", `${left}px`);
-              menu.style.setProperty("--top", `${top}px`);
-              menu.style.setProperty("--width", `${rect.width}px`);
-              menu.style.setProperty("--height", `${rect.height}px`);
+  function hoveredGlobal() {
+    const menus = $$(".hover-menu");
+    if (!menus) return;
 
-              menu.style.opacity = "1";
-              menu.style.visibility = "visible";
-            });
+    menus.forEach((menu) => {
+      const { items: itemsSelector, container: containerSelector } =
+        menu.dataset;
 
-            item.addEventListener("mouseleave", () => {
-              menu.style.opacity = "0";
-              menu.style.visibility = "hidden";
-            });
-          });
-        }
-      }
-    }
-  });
+      if (!itemsSelector || !containerSelector) return;
+
+      const listItem = $$(itemsSelector);
+      const header = $(containerSelector);
+
+      if (!header || listItem.length === 0) return;
+
+      listItem.forEach((item) => {
+        item.addEventListener("mouseenter", () =>
+          handleMouseEnter(menu, header, item)
+        );
+        item.addEventListener("mouseleave", () => handleMouseLeave(menu));
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", hoveredGlobal);
 </script>
