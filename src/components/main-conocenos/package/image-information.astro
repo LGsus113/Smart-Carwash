@@ -1,0 +1,30 @@
+---
+import Container from "@src/components/comun/contener-div.astro";
+import H1Title from "@src/components/main-conocenos/package/h1-title.astro";
+import ShadowInnerImage from "@src/components/comun/shadow-inner-image.astro";
+
+import Team from "@public/galeria-enterprise/team.webp";
+---
+
+<Container class="gap-20">
+  <div class="w-[630px] h-auto relative z-20 overflow-hidden rounded-xl">
+    <img
+      src={Team.src}
+      alt="Grupo de trabajadores de la empresa"
+      class="size-full"
+    />
+    <ShadowInnerImage />
+  </div>
+  <div class="size-auto flex flex-col gap-5 flex-grow basis-0 justify-center">
+    <H1Title title="Nuestra Historia" />
+    <p class="text-xl text-uni-secondary">
+      Desde 2014, Smart Carwas ha sido sinónimo de excelencia en el cuidado
+      automotriz. Comenzamos con una simple misión: Proporcionar el mejor
+      servicio de estética y mantenimiento automotriz en la ciudad.
+      <br />
+      <br />
+      A lo largo de los años, hemos invertido en la mejor tecnología y capacitación
+      para nuestro equipo, asegurando que cada vehículo reciba un tratamiento excepcional.
+    </p>
+  </div>
+</Container>

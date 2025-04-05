@@ -17,6 +17,7 @@ body {
 @theme {
   --color-primary: #facc15;
   --color-secondary: #de9400;
+  --color-tertiary: #683a08;
   --color-accent: #ebe9e3;
   --color-uni-secondary: #8d8d8d;
 

@@ -1,0 +1,23 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<article
+  class="bg-accent shadow-inner shadow-black/10 flex flex-col flex-grow basis-0 items-center justify-center shadow-[0px 1px 1px] shadow-black/30 rounded-xl p-5 relative overflow-hidden group"
+>
+  <h1
+    class="font-bungee-inline text-4xl text-primary drop-shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
+  >
+    {title}
+  </h1>
+  <p class="text-uni-secondary text-xl">
+    <slot />
+  </p>
+  <span
+    class="absolute z-10 -top-12 bottom-0 left-[-30%] w-[100px] h-[200px] bg-white/60 -rotate-[30deg] opacity-0 transition-all duration-[1.4s] group-hover:left-[120%] group-hover:opacity-100 pointer-events-none"
+  ></span>
+</article>

@@ -1,0 +1,16 @@
+---
+import SectionScheme from "@src/components/comun/section-scheme.astro";
+import Container from "@src/components/comun/contener-div.astro";
+import Consumer from "@src/components/comun/consumer-card-data.astro";
+
+import { SERVICES_DATA } from "@src/utils/services";
+
+const DATA = SERVICES_DATA;
+const varible = "grid";
+---
+
+<SectionScheme id="servicios" className="justify-center my-20">
+  <Container class="grid-cols-3 gap-6" varible={varible}>
+    {DATA.map((item) => <Consumer item={item} varible={varible} />)}
+  </Container>
+</SectionScheme>
