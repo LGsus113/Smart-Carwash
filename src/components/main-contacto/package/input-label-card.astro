@@ -8,34 +8,61 @@ interface Props {
 }
 
 const { title, type, varible = "type" } = Astro.props as Props;
+const centered =
+  varible === "textarea" ? "max-h-11 items-start" : "items-center";
 ---
 
 <Container class="flex-col gap-2 text-start">
   <label
     for={title}
-    class="text-uni-secondary font-bungee text-lg font-semibold uppercase"
+    class="w-full text-uni-secondary font-bungee text-lg font-semibold uppercase grid contener-input-label"
   >
-    {title}:
+    {
+      varible === "textarea" ? (
+        <textarea
+          id={title}
+          name={title}
+          rows="4"
+          required
+          class="input-textarea focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
+          placeholder=" "
+        />
+      ) : (
+        <input
+          type={type}
+          id={title}
+          name={title}
+          required
+          class="input-textarea focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
+          placeholder=" "
+        />
+      )
+    }
+    <span
+      class:list={[
+        "input-textarea z-50 w-max h-full ml-4 p-2 flex origin-[left_center] transition-all duration-200",
+        centered,
+      ]}
+    >
+      Escribe aquí tu {title}
+    </span>
   </label>
-  {
-    varible === "textarea" ? (
-      <textarea
-        id={title}
-        name={title}
-        rows="4"
-        required
-        class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder={`Escribe aquí tu ${title.toLowerCase()}`}
-      />
-    ) : (
-      <input
-        type={type}
-        id={title}
-        name={title}
-        required
-        class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder={`Escribe aquí tu ${title.toLowerCase()}`}
-      />
-    )
-  }
 </Container>
+
+<style>
+  .contener-input-label {
+    grid-template-areas: "input";
+  }
+
+  .input-textarea {
+    grid-area: input;
+  }
+
+  .focused-selector:is(:focus, :not(:placeholder-shown)) + span {
+    background-color: white;
+    transform: translateY(-50%) scale(0.7);
+    color: var(--color-primary);
+    font-family: sans-serif;
+    font-weight: 800;
+  }
+</style>
