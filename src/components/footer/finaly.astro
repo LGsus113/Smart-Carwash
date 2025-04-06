@@ -4,39 +4,10 @@ import Separata from "@src/components/footer/separata.astro";
 import Contenedor from "@src/components/comun/contener-div.astro";
 import ListContact from "@src/components/footer/list-contact.astro";
 
-import FB from "@src/assets/redes-svg/fb.svg";
-import Email from "@src/assets/redes-svg/email.svg";
-import Instagram from "@src/assets/redes-svg/instagram.svg";
-import Phone from "@src/assets/redes-svg/phone.svg";
-import Ubication from "@src/assets/redes-svg/ubication.svg";
+import { CONTACT_INFO, SOCIAL_MEDIA } from "@src/utils/icon-contact-list.ts";
 
-const CONTACT_INFO = [
-  {
-    icon: Ubication,
-    label: "Av. Principal #123",
-  },
-  {
-    icon: Phone,
-    label: "+51 999 999 999",
-  },
-  {
-    icon: Email,
-    label: "info@autoshine.com",
-  },
-];
-
-const SOCIAL_MEDIA = [
-  {
-    icon: FB,
-    label: "Facebook",
-    link: "https://www.facebook.com/share/15xeSc1J6U/",
-  },
-  {
-    icon: Instagram,
-    label: "Instagram",
-    link: "https://www.instagram.com/",
-  },
-];
+const CONTACT_INFO_USE = CONTACT_INFO;
+const SOCIAL_MEDIA_USE = SOCIAL_MEDIA;
 ---
 
 <SectionScheme
@@ -52,13 +23,13 @@ const SOCIAL_MEDIA = [
       title="Contacto"
       description="Si deseas ubicarnos, todos nuestros datos oficiales aquí abajo."
       class="justify-center"
-      items={CONTACT_INFO}
+      items={CONTACT_INFO_USE}
     />
     <ListContact
       title="Síguenos"
       description="Nuestras redes oficiales a tu disposición, síguenos para mantenerte al día."
       class="justify-center"
-      items={SOCIAL_MEDIA}
+      items={SOCIAL_MEDIA_USE}
     />
   </Contenedor>
   <Separata />

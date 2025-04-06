@@ -1,0 +1,43 @@
+---
+import H1Title from "@src/components/comun/h1-title.astro";
+
+import { CONTACT_INFO } from "@src/utils/icon-contact-list.ts";
+
+import Clock from "@src/assets/icon-svg/clock.svg";
+
+const CONTACT_USE = [
+  ...CONTACT_INFO,
+  {
+    icon: Clock,
+    label: "Siempre abierto",
+  },
+];
+---
+
+<div
+  class="w-full hauto flex-grow basis-0 flex flex-col gap-7 items-center justify-center"
+>
+  <H1Title
+    title="Información de contacto"
+    color="text-primary"
+    size="text-4xl"
+  />
+  <div
+    class="w-full h-auto flex-col gap-2 text-start bg-black/10 p-5 rounded-lg"
+  >
+    <ul class="flex flex-col gap-2 list-none">
+      {
+        CONTACT_USE.map((item: any) => {
+          const { icon: Icon, label } = item;
+
+          return (
+            <li class="flex gap-2 items-center">
+              <Icon class="w-6 h-6 text-primary drop-shadow-[2px_2px_1px_rgba(0,0,0,0.4)]" />
+              <span class="text-lg font-semibold">{label}</span>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</div>
