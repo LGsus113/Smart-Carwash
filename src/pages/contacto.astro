@@ -1,0 +1,15 @@
+---
+import Layout from "@src/layouts/Layout.astro";
+import Nav from "@src/components/header/nav.astro";
+import Group from "@src/components/main-contacto/group.astro";
+import Finaly from "@src/components/footer/finaly.astro";
+import Disposicion from "@src/components/comun/display/disposicion.astro";
+---
+
+<Layout title="Servicios" description="Services page">
+  <Disposicion>
+    <Nav slot={"header"} />
+    <Group slot={"main"} />
+    <Finaly slot={"footer"} />
+  </Disposicion>
+</Layout>
