@@ -1,6 +1,6 @@
 ---
+import Container from "@src/components/comun/contener-div.astro";
 import H1Title from "@src/components/comun/h1-title.astro";
-
 import { CONTACT_INFO } from "@src/utils/icon-contact-list.ts";
 
 import Clock from "@src/assets/icon-svg/clock.svg";
@@ -22,8 +22,8 @@ const CONTACT_USE = [
     color="text-primary"
     size="text-4xl"
   />
-  <div
-    class="w-full h-auto flex-col gap-2 text-start bg-black/10 p-5 rounded-lg"
+  <Container
+    class="shadow-inner shadow-white/80 flex-col gap-2 text-start bg-black/10 p-5 rounded-lg"
   >
     <ul class="flex flex-col gap-2 list-none">
       {
@@ -39,5 +39,5 @@ const CONTACT_USE = [
         })
       }
     </ul>
-  </div>
+  </Container>
 </div>

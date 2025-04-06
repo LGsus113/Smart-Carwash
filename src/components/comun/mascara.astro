@@ -1,4 +1,15 @@
-<div
-  class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_right,black_-2%,transparent)]"
->
-</div>
+---
+interface Props {
+  direction?: "left" | "bottom";
+}
+
+const { direction = "left" } = Astro.props as Props;
+---
+
+{
+  direction === "left" ? (
+    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_right,black_-2%,transparent)]"></div>
+  ) : (
+    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_top,black_-2%,transparent)]"></div>
+  )
+}
