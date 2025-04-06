@@ -2,6 +2,7 @@
 import Isotipo from "@public/galeria-enterprise/marca2.webp";
 import SectionScheme from "@src/components/comun/section-scheme.astro";
 import Container from "@src/components/comun/contener-div.astro";
+import H1Title from "@src/components/comun/h1-title.astro";
 
 interface Props {
   title: string;
@@ -18,7 +19,7 @@ const className = "flex-grow basis-0";
 >
   <Container class="items-center gap-20 pt-[4%]">
     <div class:list={className}>
-      <h1 class="font-bungee-inline text-5xl mb-5">{title}</h1>
+      <H1Title title={title} color="text-white" size="text-5xl" />
       <p class="text-2xl text-uni-secondary">
         <slot />
       </p>

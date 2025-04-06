@@ -1,0 +1,41 @@
+---
+import Container from "@src/components/comun/contener-div.astro";
+
+interface Props {
+  title: string;
+  type?: any;
+  varible?: "type" | "textarea";
+}
+
+const { title, type, varible = "type" } = Astro.props as Props;
+---
+
+<Container class="flex-col gap-2 text-start">
+  <label
+    for={title}
+    class="text-uni-secondary font-bungee text-lg font-semibold uppercase"
+  >
+    {title}:
+  </label>
+  {
+    varible === "textarea" ? (
+      <textarea
+        id={title}
+        name={title}
+        rows="4"
+        required
+        class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder={`Escribe aquí tu ${title.toLowerCase()}`}
+      />
+    ) : (
+      <input
+        type={type}
+        id={title}
+        name={title}
+        required
+        class="border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder={`Escribe aquí tu ${title.toLowerCase()}`}
+      />
+    )
+  }
+</Container>

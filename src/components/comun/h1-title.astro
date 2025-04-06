@@ -1,0 +1,51 @@
+---
+type fontSizeClass =
+  | "text-xs"
+  | "text-sm"
+  | "text-base"
+  | "text-lg"
+  | "text-xl"
+  | "text-2xl"
+  | "text-3xl"
+  | "text-4xl"
+  | "text-5xl"
+  | "text-6xl"
+  | "text-7xl"
+  | "text-8xl"
+  | "text-9xl";
+type CustomFontSize = `text-[${number}px]`;
+type AllowedTextSize = fontSizeClass | CustomFontSize;
+
+type colorTextCustom =
+  | "text-primary"
+  | "text-secondary"
+  | "text-tertiary"
+  | "text-accent"
+  | "text-uni-secondary"
+  | "text-white"
+  | "text-black";
+type colorText = `text-${string}-${number}`;
+type AllowedColorText = colorTextCustom | colorText;
+
+interface Props {
+  title: string;
+  color?: AllowedColorText;
+  size?: AllowedTextSize;
+}
+
+const {
+  title,
+  color = "text-primary",
+  size = "text-[43px]",
+} = Astro.props as Props;
+---
+
+<h1
+  class:list={[
+    "font-bungee-inline drop-shadow-[2px_2px_1px_rgba(0,0,0,0.7)]",
+    color,
+    size,
+  ]}
+>
+  {title}
+</h1>

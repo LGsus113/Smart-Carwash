@@ -1,0 +1,19 @@
+---
+import InputLabelCard from "@src/components/main-contacto/package/input-label-card.astro";
+import H1Title from "@src/components/comun/h1-title.astro";
+import ButtonContent from "@src/components/comun/button-content.astro";
+---
+
+<div class="flex-grow basis-0 flex flex-col gap-4 text-center">
+  <H1Title title="Evíanos un mensaje" color="text-primary" size="text-4xl" />
+  <form
+    action="https://formspree.io/f/xjvjlqzj"
+    method="POST"
+    class="w-full h-auto flex flex-col items-center justify-center gap-4"
+  >
+    <InputLabelCard title="Nombre" type="text" />
+    <InputLabelCard title="E-mail" type="email" />
+    <InputLabelCard title="Mensaje" varible="textarea" />
+    <ButtonContent title="Enviar" />
+  </form>
+</div>
