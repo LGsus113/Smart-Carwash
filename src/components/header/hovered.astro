@@ -1,10 +1,7 @@
 ---
-interface Props {
-  items: string;
-  container: string;
-}
+import type { HoveredProps } from "@src/utils/type-props";
 
-const { items, container } = Astro.props;
+const { items, container } = Astro.props as HoveredProps;
 ---
 
 <div

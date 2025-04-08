@@ -1,12 +1,14 @@
 ---
-interface Props {
-  title: string;
-  description?: string;
-  class?: string;
-  items?: { icon: any; label: string; link?: string }[];
-}
+import type { ListContactProps, TitleProps } from "@src/utils/type-props";
 
-const { class: className, title, items, description } = Astro.props as Props;
+type CombinatedProps = ListContactProps & TitleProps;
+
+const {
+  class: className,
+  title,
+  items,
+  description,
+} = Astro.props as CombinatedProps;
 ---
 
 <div class="text-white flex-grow basis-0">

@@ -1,10 +1,9 @@
 ---
+import type { TitleProps } from "@src/utils/type-props";
+
 import Check from "@src/assets/icon-svg/check.svg";
 
-interface Props {
-  title: string;
-}
-const { title } = Astro.props as Props;
+const { title } = Astro.props as TitleProps;
 ---
 
 <div class="flex gap-3 items-center justify-center flex-grow basis-0">

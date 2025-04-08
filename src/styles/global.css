@@ -25,7 +25,3 @@ body {
   --font-bungee: "Bungee", serif;
   --font-bungee-inline: "Bungee Inline", sans-serif;
 }
-
-.realce:hover .afectado {
-  transform: scale(1.05);
-}

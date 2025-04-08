@@ -1,13 +1,12 @@
 ---
+import type { InputLabelCardProps, TitleProps } from "@src/utils/type-props";
+
 import Container from "@src/components/comun/contener-div.astro";
 
-interface Props {
-  title: string;
-  type?: any;
-  varible?: "type" | "textarea";
-}
+type CombinatedProps = TitleProps & InputLabelCardProps;
 
-const { title, type, varible = "type" } = Astro.props as Props;
+const { title, type, varible = "type" } = Astro.props as CombinatedProps;
+
 const centered =
   varible === "textarea" ? "max-h-11 items-start" : "items-center";
 ---

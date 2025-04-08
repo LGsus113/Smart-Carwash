@@ -1,10 +1,7 @@
 ---
-interface Props {
-  href: string;
-  className?: string;
-}
+import type { AnchorProps } from "@src/utils/type-props";
 
-const { href, className } = Astro.props as Props;
+const { href, className } = Astro.props as AnchorProps;
 ---
 
 <a href={href} target="_blank" rel="noopener noreferrer" class={className}>

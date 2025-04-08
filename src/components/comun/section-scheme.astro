@@ -1,10 +1,7 @@
 ---
-interface Props {
-  id: string;
-  className: string;
-}
+import type { SectionSchemeProps } from "@src/utils/type-props";
 
-const { id, className } = Astro.props;
+const { id, className } = Astro.props as SectionSchemeProps;
 ---
 
 <section id={id} class:list={["w-full flex items-center", className]}>

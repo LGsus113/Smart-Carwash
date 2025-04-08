@@ -1,18 +1,8 @@
 ---
+import type { ConsumerCardProps } from "@src/utils/type-props";
 import Boton from "@src/components/comun/button-content.astro";
 
-interface Props {
-  item: {
-    title: string;
-    description: string;
-    icon: any;
-    link: string;
-    imageLink: string;
-  };
-  varible?: "flex" | "grid";
-}
-
-const { item, varible = "flex" } = Astro.props as Props;
+const { item, varible = "flex" } = Astro.props as ConsumerCardProps;
 
 const className =
   "bg-white rounded-xl flex flex-col border border-gray-200 hover:shadow-xl transition-all duration-100 ease-in";
@@ -54,3 +44,9 @@ const className =
     </a>
   )
 }
+
+<style>
+  .realce:hover .afectado {
+    transform: scale(1.05);
+  }
+</style>

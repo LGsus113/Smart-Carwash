@@ -1,43 +1,13 @@
 ---
-type fontSizeClass =
-  | "text-xs"
-  | "text-sm"
-  | "text-base"
-  | "text-lg"
-  | "text-xl"
-  | "text-2xl"
-  | "text-3xl"
-  | "text-4xl"
-  | "text-5xl"
-  | "text-6xl"
-  | "text-7xl"
-  | "text-8xl"
-  | "text-9xl";
-type CustomFontSize = `text-[${number}px]`;
-type AllowedTextSize = fontSizeClass | CustomFontSize;
+import type { H1TitleProps, TitleProps } from "@src/utils/type-props";
 
-type colorTextCustom =
-  | "text-primary"
-  | "text-secondary"
-  | "text-tertiary"
-  | "text-accent"
-  | "text-uni-secondary"
-  | "text-white"
-  | "text-black";
-type colorText = `text-${string}-${number}`;
-type AllowedColorText = colorTextCustom | colorText;
-
-interface Props {
-  title: string;
-  color?: AllowedColorText;
-  size?: AllowedTextSize;
-}
+type CombinatedProps = TitleProps & H1TitleProps;
 
 const {
   title,
   color = "text-primary",
   size = "text-[43px]",
-} = Astro.props as Props;
+} = Astro.props as CombinatedProps;
 ---
 
 <h1

@@ -1,11 +1,8 @@
 ---
-interface ListProps {
-  href: string;
-  label: string;
-}
+import type { ListLinkProps } from "@src/utils/type-props";
 
 const { items } = Astro.props as {
-  items: ListProps[];
+  items: ListLinkProps[];
 };
 
 const active = (nombre: string) =>

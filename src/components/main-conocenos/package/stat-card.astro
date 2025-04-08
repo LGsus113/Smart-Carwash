@@ -1,9 +1,7 @@
 ---
-export interface Props {
-  title: string;
-}
+import type { TitleProps } from "@src/utils/type-props";
 
-const { title } = Astro.props;
+const { title } = Astro.props as TitleProps;
 ---
 
 <article

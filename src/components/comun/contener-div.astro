@@ -1,10 +1,7 @@
 ---
-interface Props {
-  class?: string;
-  varible?: "flex" | "grid";
-}
+import type { ContenerDivProps } from "@src/utils/type-props";
 
-const { class: className, varible = "flex" } = Astro.props as Props;
+const { class: className, varible = "flex" } = Astro.props as ContenerDivProps;
 ---
 
 <div class:list={["w-4/5 h-auto", className, varible]}>

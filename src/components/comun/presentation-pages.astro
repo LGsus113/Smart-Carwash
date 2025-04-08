@@ -1,14 +1,11 @@
 ---
+import type { TitleProps } from "@src/utils/type-props";
 import Isotipo from "@public/galeria-enterprise/marca2.webp";
 import SectionScheme from "@src/components/comun/section-scheme.astro";
 import Container from "@src/components/comun/contener-div.astro";
 import H1Title from "@src/components/comun/h1-title.astro";
 
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props as Props;
+const { title } = Astro.props as TitleProps;
 
 const className = "flex-grow basis-0";
 ---

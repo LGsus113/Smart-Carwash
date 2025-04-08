@@ -1,15 +1,13 @@
 ---
-interface Props {
-  direction?: "left" | "bottom";
-}
+import type { MascaraProps } from "@src/utils/type-props";
 
-const { direction = "left" } = Astro.props as Props;
+const { direction = "left" } = Astro.props as MascaraProps;
 ---
 
 {
   direction === "left" ? (
-    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_right,black_-2%,transparent)]"></div>
+    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_right,black_-2%,transparent)]" />
   ) : (
-    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_top,black_-2%,transparent)]"></div>
+    <div class="absolute w-full h-full flex justify-center bg-black [mask-image:linear-gradient(to_top,black_-2%,transparent)]" />
   )
 }

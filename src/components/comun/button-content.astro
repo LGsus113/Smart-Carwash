@@ -1,10 +1,9 @@
 ---
-interface Props {
-  title: string;
-  variant?: "primary" | "secondary";
-}
+import type { ButtonProps, TitleProps } from "@src/utils/type-props";
 
-const { title, variant = "primary" } = Astro.props as Props;
+type CombinatedProps = TitleProps & ButtonProps;
+
+const { title, variant = "primary" } = Astro.props as CombinatedProps;
 
 const className = `
   relative overflow-hidden text-2xl font-bungee font-bold mb-4 px-3 py-2 rounded-lg shadow-inner hover:cursor-pointer group
