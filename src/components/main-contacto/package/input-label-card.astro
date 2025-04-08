@@ -23,7 +23,7 @@ const centered =
           name={title}
           rows="4"
           required
-          class="input-textarea focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
+          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
           placeholder=" "
         />
       ) : (
@@ -32,7 +32,7 @@ const centered =
           id={title}
           name={title}
           required
-          class="input-textarea focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
+          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
           placeholder=" "
         />
       )
@@ -59,7 +59,7 @@ const centered =
 
   .focused-selector:is(:focus, :not(:placeholder-shown)) + span {
     background-color: white;
-    transform: translateY(-50%) scale(0.7);
+    transform: translateY(-50%) scale(0.6);
     color: var(--color-primary);
     font-family: sans-serif;
     font-weight: 800;
