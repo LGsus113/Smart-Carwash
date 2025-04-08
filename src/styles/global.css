@@ -25,3 +25,13 @@ body {
   --font-bungee: "Bungee", serif;
   --font-bungee-inline: "Bungee Inline", sans-serif;
 }
+
+@layer utilities {
+  @keyframes bounce {
+    100% {
+      top: -12px;
+      text-shadow: 0 5px 3px #ccc, 0 7px 5px #ccc, 0 9px 7px #ccc,
+        0 11px 9px #ccc, 0 13px 11px #ccc;
+    }
+  }
+}

@@ -1,10 +1,30 @@
 ---
 import ShadowInnerImage from "@src/components/comun/shadow-inner-image.astro";
 import Container from "@src/components/comun/contener-div.astro";
+
+const ClassSpan =
+  "relative top-3 text-primary text-5xl inline-block span-shadow-animation";
 ---
 
 <Container class="relative overflow-hidden rounded-xl">
+  <div
+    id="map-loading"
+    class="absolute inset-0 flex items-center justify-center bg-gray-200 z-10"
+  >
+    <h1 class="padre-span font-bungee">
+      <span class={ClassSpan}>S</span>
+      <span class={ClassSpan}>M</span>
+      <span class={ClassSpan}>A</span>
+      <span class={ClassSpan}>R</span>
+      <span class={ClassSpan}>T</span>
+      <span class={ClassSpan}>.</span>
+      <span class={ClassSpan}>.</span>
+      <span class={ClassSpan}>.</span>
+    </h1>
+  </div>
+
   <iframe
+    id="map-frame"
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.0172754574835!2d-79.03703196122295!3d-8.097958942516996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d9381f195b9%3A0x1553a6faf07d47b8!2sSibelius%201049%2C%20Trujillo%2013001!5e0!3m2!1ses!2spe!4v1743963902658!5m2!1ses!2spe"
     width="800"
     height="600"
@@ -12,5 +32,56 @@ import Container from "@src/components/comun/contener-div.astro";
     allowfullscreen=""
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"></iframe>
+
   <ShadowInnerImage />
 </Container>
+
+<script>
+  import { $ } from "@src/utils/dom-selector";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const iframe = $("#map-frame");
+    const loader = $("#map-loading");
+
+    if (iframe && loader) {
+      iframe.addEventListener("load", () => {
+        loader.style.opacity = "0";
+        loader.style.display = "none";
+      });
+    }
+  });
+</script>
+
+<style>
+  .span-shadow-animation {
+    animation: bounce 0.4s ease infinite alternate;
+  }
+
+  .padre-span span:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .padre-span span:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .padre-span span:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .padre-span span:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .padre-span span:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  .padre-span span:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  .padre-span span:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+
+  #map-loading {
+    transition:
+      opacity 0.3s ease,
+      display 0.3s ease allow-discrete;
+  }
+</style>
