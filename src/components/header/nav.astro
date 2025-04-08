@@ -26,7 +26,7 @@ const LINKS = [
 ---
 
 <div
-  id="linkers"
+  data-container-linkers
   class="w-full h-auto fixed z-50 flex items-center justify-center bg-black/90"
 >
   <div class="w-4/5 h-24 flex items-center justify-between">
@@ -43,7 +43,7 @@ const LINKS = [
       class="w-auto h-full flex justify-center items-center text-white text-xl font-bungee"
     >
       <ListLink items={LINKS} />
-      <Hovered items="#linkers nav li" container="#linkers" />
+      <Hovered />
     </nav>
   </div>
 </div>

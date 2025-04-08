@@ -1,4 +1,8 @@
 ---
+// El elento de carga es el slot, tomará ese elemento para evaluar cuando ya haya cargado, si este carga hace el resto de la animación.
+// Para que el elemento de carga sea reconocido, necesita obligatoriamente que se le agregue el atributo data. Para este caso especifico a sido utilizado "data-load-target".
+// En todo elemento que se pase a este componente para hacer uso de la animación debe tener el elemento de carga, sino aplicar script que le otorgue la carga y usar el atributo data ya mencionado para que lo reconozca y haga la animación.
+
 import ShadowInnerImage from "@src/components/comun/shadow-inner-image.astro";
 import Container from "@src/components/comun/contener-div.astro";
 
@@ -8,7 +12,7 @@ const ClassSpan =
 
 <Container class="relative overflow-hidden rounded-xl">
   <div
-    id="map-loading"
+    data-target-id
     class="absolute inset-0 flex items-center justify-center bg-gray-200 z-10"
   >
     <h1 class="padre-span font-bungee">
@@ -23,15 +27,7 @@ const ClassSpan =
     </h1>
   </div>
 
-  <iframe
-    id="map-frame"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.0172754574835!2d-79.03703196122295!3d-8.097958942516996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d9381f195b9%3A0x1553a6faf07d47b8!2sSibelius%201049%2C%20Trujillo%2013001!5e0!3m2!1ses!2spe!4v1743963902658!5m2!1ses!2spe"
-    width="800"
-    height="600"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <slot />
 
   <ShadowInnerImage />
 </Container>
@@ -40,13 +36,13 @@ const ClassSpan =
   import { $ } from "@src/utils/dom-selector";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const iframe = $("#map-frame");
-    const loader = $("#map-loading");
+    const load_element = $("[data-load-target]");
+    const load_animated = $("[data-target-id]");
 
-    if (iframe && loader) {
-      iframe.addEventListener("load", () => {
-        loader.style.opacity = "0";
-        loader.style.display = "none";
+    if (load_element && load_animated) {
+      load_element.addEventListener("load", () => {
+        load_animated.style.opacity = "0";
+        load_animated.style.display = "none";
       });
     }
   });
@@ -79,7 +75,7 @@ const ClassSpan =
     animation-delay: 0.7s;
   }
 
-  #map-loading {
+  [data-target-id] {
     transition:
       opacity 0.3s ease,
       display 0.3s ease allow-discrete;

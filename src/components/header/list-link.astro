@@ -13,6 +13,7 @@ const active = (nombre: string) =>
   {
     items.map((item) => (
       <li
+        data-list-linkers
         class:list={[
           active(item.href),
           "flex hover:text-black transition-all duration-300 ease-in-out",

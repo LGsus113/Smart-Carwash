@@ -84,12 +84,6 @@ export interface ListContactProps {
   items?: { icon: any; label: string; link?: string }[];
 }
 
-// Props para componente hovered.astro
-export interface HoveredProps {
-  items: string;
-  container: string;
-}
-
 // Props para componente ListLink.astro
 export interface ListLinkProps {
   href: string;

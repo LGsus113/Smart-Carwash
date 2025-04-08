@@ -1,13 +1,6 @@
----
-import type { HoveredProps } from "@src/utils/type-props";
-
-const { items, container } = Astro.props as HoveredProps;
----
-
 <div
-  data-items={items}
-  data-container={container}
-  class="hover-menu absolute bg-primary backdrop-blur-sm rounded-md left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-200 ease-in-out opacity-0 -z-10 shadow-inner shadow-white/90"
+  data-hover-menu
+  class="absolute bg-primary backdrop-blur-sm rounded-md left-[var(--left)] top-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-200 ease-in-out opacity-0 -z-10 shadow-inner shadow-white/90"
 >
 </div>
 
@@ -16,14 +9,14 @@ const { items, container } = Astro.props as HoveredProps;
 
   const handleMouseEnter = (
     menu: HTMLElement,
-    header: HTMLElement,
+    container: HTMLElement,
     item: HTMLElement
   ) => {
     const rect = item.getBoundingClientRect();
-    const headerRect = header.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
 
-    const left = rect.left - headerRect.left;
-    const top = rect.top - headerRect.top;
+    const left = rect.left - containerRect.left;
+    const top = rect.top - containerRect.top;
 
     menu.style.setProperty("--left", `${left}px`);
     menu.style.setProperty("--top", `${top}px`);
@@ -40,23 +33,18 @@ const { items, container } = Astro.props as HoveredProps;
   };
 
   function hoveredGlobal() {
-    const menus = $$(".hover-menu");
-    if (!menus) return;
+    const containers = $$("[data-container-linkers]");
+    if (!containers) return;
 
-    menus.forEach((menu) => {
-      const { items: itemsSelector, container: containerSelector } =
-        menu.dataset;
+    containers.forEach((container) => {
+      const menu = $<HTMLElement>("[data-hover-menu]", container);
+      const listItem = $$<HTMLElement>("[data-list-linkers]", container);
 
-      if (!itemsSelector || !containerSelector) return;
-
-      const listItem = $$(itemsSelector);
-      const header = $(containerSelector);
-
-      if (!header || listItem.length === 0) return;
+      if (!menu || listItem.length === 0) return;
 
       listItem.forEach((item) => {
         item.addEventListener("mouseenter", () =>
-          handleMouseEnter(menu, header, item)
+          handleMouseEnter(menu, container, item)
         );
         item.addEventListener("mouseleave", () => handleMouseLeave(menu));
       });
