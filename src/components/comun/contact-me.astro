@@ -2,10 +2,68 @@
 import WaMe from "@src/assets/redes-svg/wa-me.svg";
 ---
 
+<dialog
+  id="wa-me-dialog"
+  closedby="any"
+  class="w-1/3 h-2/3 mt-auto mb-24 ml-auto mr-7 p-7 fixed z-50 rounded-3xl border bg-primary border-primary"
+>
+  <h2>Bienvenido</h2>
+  <p>Este es un ejemplo de modal en HTML</p>
+  <form method="dialog">
+    <button id="closeDialog">Cerrar</button>
+  </form>
+</dialog>
+
 <button
-  class="group overflow-hidden flex justify-center items-center fixed z-50 right-0 bottom-0 m-7 size-auto rounded-full shadow-inner hover:cursor-pointer bg-primary border border-primary shadow-black/90"
+  id="openDialog"
+  class="group overflow-hidden flex justify-center items-center fixed z-50 right-0 bottom-0 m-7 size-auto rounded-full shadow-inner hover:cursor-pointer bg-primary border border-primary shadow-white"
 >
   <WaMe
-    class="text-black size-10 m-2 group-hover:scale-105 transition-all duration-100 ease-out"
+    class="icon-group text-black/65 size-10 m-2 scale-105 group-hover:text-black transition-all duration-100 group-hover:duration-300 ease-out"
   />
 </button>
+
+<script>
+  import { $ } from "@src/utils/dom-selector";
+
+  const dialog = $<HTMLDialogElement>("#wa-me-dialog");
+  const openButton = $("#openDialog");
+
+  openButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+</script>
+
+<style>
+  dialog[open] {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1) translateY(0);
+    transform-origin: bottom right;
+    transition: all 0.4s cubic-bezier(0.34, 1.7, 0.75, 0.9);
+
+    @starting-style {
+      transform: scaleX(0.05) scaleY(0.3) translateY(20%);
+      opacity: 0;
+      margin-right: 60px;
+    }
+  }
+
+  dialog {
+    box-shadow: inset 0 0 4px 1px white;
+    opacity: 0;
+    transform: scaleX(0.05) scaleY(0.3) translateY(20%);
+    transform-origin: bottom right;
+    transition:
+      all 0.4s cubic-bezier(0.75, 0.9, 0.34, 1.7),
+      display 0.4s ease-in-out allow-discrete;
+  }
+
+  dialog[open] + #openDialog {
+    box-shadow: inset 0 2px 4px 0 black;
+  }
+
+  dialog[open] + #openDialog .icon-group {
+    transform: scale(0.9);
+    color: black;
+  }
+</style>

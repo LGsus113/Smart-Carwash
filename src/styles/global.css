@@ -3,17 +3,6 @@
 @import "@fontsource/bungee";
 @import "@fontsource/bungee-inline";
 
-html,
-body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 @theme {
   --color-primary: #facc15;
   --color-secondary: #de9400;
