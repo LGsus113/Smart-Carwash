@@ -4,8 +4,6 @@ import SectionScheme from "@src/components/comun/section-scheme.astro";
 import Consumer from "@src/components/comun/consumer-card-data.astro";
 
 import { SERVICES_DATA } from "@src/utils/services";
-
-const DATA = SERVICES_DATA;
 ---
 
 <SectionScheme id="servicios" className="flex-col justify-center my-20">
@@ -13,7 +11,7 @@ const DATA = SERVICES_DATA;
     Nuestros Servicios
   </h1>
   <div class="w-4/5 h-auto grid grid-cols-3 gap-6 p-4 mb-10">
-    {DATA.map((item) => <Consumer item={item} />)}
+    {SERVICES_DATA.map((item) => <Consumer item={item} />)}
   </div>
   <ButtonContent title="Ver todos" />
 </SectionScheme>

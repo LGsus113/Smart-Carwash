@@ -1,0 +1,20 @@
+---
+import Layout from "@src/layouts/Layout.astro";
+import Nav from "@src/components/header/nav.astro";
+import Finaly from "@src/components/footer/finaly.astro";
+import Disposicion from "@src/components/comun/display/disposicion.astro";
+
+import type { LayoutProps, BaseProps } from "@src/utils/type-props";
+
+type CombinatedType = LayoutProps & BaseProps;
+
+const { title, description, MainComponent } = Astro.props as CombinatedType;
+---
+
+<Layout title={title} description={description}>
+  <Disposicion>
+    <Nav slot="header" />
+    <MainComponent slot="main" />
+    <Finaly slot="footer" />
+  </Disposicion>
+</Layout>

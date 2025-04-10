@@ -1,3 +1,10 @@
+//Props para componente page-base.astro
+type AstroComponent = () => Promise<{ html: string }>;
+
+export interface BaseProps {
+  MainComponent: AstroComponent;
+}
+
 // Props para componente anchor.astro
 export interface AnchorProps {
   href: string;

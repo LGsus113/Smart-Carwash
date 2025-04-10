@@ -5,9 +5,6 @@ import Contenedor from "@src/components/comun/contener-div.astro";
 import ListContact from "@src/components/footer/list-contact.astro";
 
 import { CONTACT_INFO, SOCIAL_MEDIA } from "@src/utils/icon-contact-list.ts";
-
-const CONTACT_INFO_USE = CONTACT_INFO;
-const SOCIAL_MEDIA_USE = SOCIAL_MEDIA;
 ---
 
 <SectionScheme
@@ -23,13 +20,13 @@ const SOCIAL_MEDIA_USE = SOCIAL_MEDIA;
       title="Contacto"
       description="Si deseas ubicarnos, todos nuestros datos oficiales aquí abajo."
       class="justify-center"
-      items={CONTACT_INFO_USE}
+      items={CONTACT_INFO}
     />
     <ListContact
       title="Síguenos"
       description="Nuestras redes oficiales a tu disposición, síguenos para mantenerte al día."
       class="justify-center"
-      items={SOCIAL_MEDIA_USE}
+      items={SOCIAL_MEDIA}
     />
   </Contenedor>
   <Separata />

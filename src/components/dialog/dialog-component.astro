@@ -1,7 +1,6 @@
 ---
 import Anchor from "@src/components/comun/anchor.astro";
 
-import WaMe from "@src/assets/redes-svg/wa-me.svg";
 import X from "@src/assets/icon-svg/equis.svg";
 import AvatarSMART from "@public/galeria-enterprise/smart-avatar.webp";
 
@@ -55,26 +54,6 @@ import { SOCIAL_MEDIA } from "@src/utils/icon-contact-list";
     <slot />
   </section>
 </dialog>
-
-<button
-  id="openDialog"
-  class="group overflow-hidden flex justify-center items-center fixed z-50 right-0 bottom-0 m-7 size-auto rounded-full shadow-inner hover:cursor-pointer bg-primary border border-primary shadow-white"
->
-  <WaMe
-    class="icon-group text-black/65 size-10 m-2 scale-105 group-hover:text-black transition-all duration-100 group-hover:duration-300 ease-out"
-  />
-</button>
-
-<script>
-  import { $ } from "@src/utils/dom-selector";
-
-  const dialog = $<HTMLDialogElement>("#wa-me-dialog");
-  const openButton = $("#openDialog");
-
-  openButton.addEventListener("click", () => {
-    dialog.showModal();
-  });
-</script>
 
 <style>
   dialog[open] {

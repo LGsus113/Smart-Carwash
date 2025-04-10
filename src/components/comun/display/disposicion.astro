@@ -1,6 +1,5 @@
 ---
-import ContactMe from "@src/components/comun/contact-me.astro";
-import FormPageContactMe from "@src/components/comun/form-page-contac-me.astro";
+import ContactMeComponent from "@src/components/comun/contact-me-component.astro";
 ---
 
 <header class="w-full h-auto max-w-[2000px]">
@@ -8,9 +7,7 @@ import FormPageContactMe from "@src/components/comun/form-page-contac-me.astro";
 </header>
 <main class="w-full h-auto max-w-[2000px]">
   <slot name="main" />
-  <ContactMe>
-    <FormPageContactMe />
-  </ContactMe>
+  <ContactMeComponent />
 </main>
 <footer class="w-full h-auto max-w-[2000px]">
   <slot name="footer" />
