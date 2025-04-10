@@ -1,0 +1,18 @@
+---
+import InputLabelCard from "@src/components/comun/input-label-card.astro";
+import ButtonContent from "@src/components/comun/button-content.astro";
+import H1Title from "@src/components/comun/h1-title.astro";
+---
+
+<form class="size-full p-6 text-center">
+  <H1Title title="Evíanos un mensaje" color="text-primary" size="text-3xl" />
+
+  <div class="size-full flex flex-col items-center justify-center gap-2">
+    <div class="w-full h-auto flex flex-col justify-center items-center gap-4">
+      <InputLabelCard title="Nombre" type="text" />
+      <InputLabelCard title="E-mail" type="email" />
+      <InputLabelCard title="Mensaje" varible="textarea" />
+    </div>
+    <ButtonContent title="Enviar" variant="primary" />
+  </div>
+</form>
