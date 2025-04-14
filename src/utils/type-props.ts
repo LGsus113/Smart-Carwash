@@ -70,6 +70,7 @@ type AllowedColorText = colorTextCustom | colorText;
 export interface H1TitleProps {
   color?: AllowedColorText;
   size?: AllowedTextSize;
+  responsive?: string;
 }
 
 // Props para componente mascara.astro
