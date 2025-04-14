@@ -7,7 +7,8 @@ export function setupDialogs() {
 
     if (!dialog) return;
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
       dialog.showModal();
     });
   });

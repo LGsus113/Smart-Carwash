@@ -1,7 +1,8 @@
 ---
-import type { ConsumerCardProps } from "@src/utils/type-props";
 import Boton from "@src/components/comun/button-content.astro";
+import DialogElement from "@src/components/dialog/estructura/dialog-element.astro";
 
+import type { ConsumerCardProps } from "@src/utils/type-props";
 const { item, varible = "flex", indice } = Astro.props as ConsumerCardProps;
 
 const className =
@@ -32,7 +33,7 @@ const className =
       </section>
     </div>
   ) : (
-    <a id={`card-${indice}`}>
+    <span data-dialog-target={`card-dialog-${indice}`} role="button" class="cursor-pointer">
       <div class:list={[className, "gap-2 p-6 hover:-translate-y-1"]}>
         <item.icon class="size-12 text-primary" />
         <h2 class="font-bungee font-light text-xl text-gray-900">
@@ -41,7 +42,10 @@ const className =
         <p class="text-gray-600">{item.description}</p>
         <span class="text-secondary font-semibold">ver más →</span>
       </div>
-    </a>
+    </span>
+    <DialogElement id={`card-dialog-${indice}`} tipo="multipoint">
+      <h1>hola mundo ${indice}</h1>
+    </DialogElement>
   )
 }
 
