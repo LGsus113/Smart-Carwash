@@ -1,31 +1,15 @@
 ---
-import Anchor from "@src/components/comun/anchor.astro";
+import DialogElement from "@src/components/dialog/estructura/dialog-element.astro";
+import FormPageContactMe from "@src/components/comun/form-page-contac-me.astro";
 
-import X from "@src/assets/icon-svg/equis.svg";
 import AvatarSMART from "@public/galeria-enterprise/smart-avatar.webp";
-
-import { SOCIAL_MEDIA } from "@src/utils/icon-contact-list";
+import WaMe from "@src/assets/redes-svg/wa-me.svg";
 ---
 
-<dialog
-  id="wa-me-dialog"
-  closedby="any"
-  class="w-1/3 h-2/3 mt-auto mb-24 ml-auto mr-7 fixed z-50 rounded-3xl border bg-black border-black"
->
+<DialogElement id="wa-me-dialog">
   <section
     class="absolute bottom-0 w-[calc(100%-40px)] h-[calc((2/3*100%)-20px)] mx-5 mb-5 flex items-center justify-center bg-white rounded-xl shadow-inner shadow-black"
   >
-    <form
-      method="dialog"
-      class="absolute z-30 bg-primary top-[-47.5%] left-0 flex items-center justify-center p-1 overflow-hidden rounded-full shadow-inner shadow-white transition-transform duration-300 hover:rotate-90"
-    >
-      <button
-        id="closeDialog"
-        class="hover:cursor-pointer rounded-full border-none outline-none"
-      >
-        <X class="size-8 text-black" />
-      </button>
-    </form>
     <div class="size-60 rounded-t-4xl p-3 absolute top-[-45%] overflow-hidden">
       <img
         src={AvatarSMART.src}
@@ -33,58 +17,23 @@ import { SOCIAL_MEDIA } from "@src/utils/icon-contact-list";
         class="size-full m-auto drop-shadow-[-2px_-1px_1px_rgba(255,255,255,0.2),1px_0_1px_rgba(255,255,255,0.5)]"
       />
     </div>
-    <div
-      class="size-auto absolute p-2 flex flex-col justify-center items-center gap-1 bg-primary border border-primary rounded-full top-[-47.5%] right-0 shadow-inner shadow-white"
-    >
-      {
-        SOCIAL_MEDIA.map((item) => {
-          const { icon: ICON, link } = item;
 
-          return (
-            <Anchor href={link}>
-              <div class="size-10 flex justify-center items-center p-2 rounded-full bg-white shadow-inner shadow-black group">
-                <ICON class="size-full group-hover:scale-95 transition-all duration-100 text-black" />
-              </div>
-            </Anchor>
-          );
-        })
-      }
-    </div>
-
-    <slot />
+    <FormPageContactMe />
   </section>
-</dialog>
+</DialogElement>
 
-<style>
-  dialog[open] {
-    box-shadow: inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
-    opacity: 1;
-    transform: scaleX(1) scaleY(1) translateY(0);
-    transform-origin: bottom right;
-    transition: all 0.4s cubic-bezier(0.34, 1.7, 0.75, 0.9);
+<button
+  id="openDialog"
+  data-dialog-target="wa-me-dialog"
+  class="group overflow-hidden flex justify-center items-center fixed z-50 right-0 bottom-0 m-7 size-auto rounded-full shadow-inner hover:cursor-pointer bg-primary border border-primary shadow-white"
+>
+  <WaMe
+    class="icon-group text-black/65 size-10 m-2 scale-105 group-hover:text-black transition-all duration-100 group-hover:duration-300 ease-out"
+  />
+</button>
 
-    @starting-style {
-      transform: scaleX(0.05) scaleY(0.3) translateY(20%);
-      opacity: 0;
-      margin-right: 60px;
-    }
-  }
+<script>
+  import { setupDialogs } from "@src/utils/dialog-handler";
 
-  dialog {
-    opacity: 0;
-    transform: scaleX(0.05) scaleY(0.3) translateY(20%);
-    transform-origin: bottom right;
-    transition:
-      all 0.4s cubic-bezier(0.75, 0.9, 0.34, 1.7),
-      display 0.4s ease-in-out allow-discrete;
-  }
-
-  dialog[open] + #openDialog {
-    box-shadow: inset 0 2px 4px 0 black;
-  }
-
-  dialog[open] + #openDialog .icon-group {
-    transform: scale(0.9);
-    color: black;
-  }
-</style>
+  setupDialogs();
+</script>

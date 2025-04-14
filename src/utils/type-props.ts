@@ -12,8 +12,11 @@ export interface AnchorProps {
 }
 
 // Props para componente button-content.astro
+type LinkType = "/" | `/${string}`;
+
 export interface ButtonProps {
   variant?: "primary" | "secondary";
+  to?: LinkType;
 }
 
 // Props para componente consumer-card-data.astro
@@ -26,6 +29,7 @@ export interface ConsumerCardProps {
     imageLink: string;
   };
   varible?: "flex" | "grid";
+  indice?: number;
 }
 
 // Props para componente contener-div.astro
@@ -107,4 +111,10 @@ export interface InputLabelCardProps {
 export interface LayoutProps {
   title: string;
   description: string;
+}
+
+// Props para componente dialog-element.astro
+export interface DialogElementProps {
+  id: string;
+  tipo?: "form" | "multipoint";
 }

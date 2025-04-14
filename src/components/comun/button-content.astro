@@ -3,7 +3,7 @@ import type { ButtonProps, TitleProps } from "@src/utils/type-props";
 
 type CombinatedProps = TitleProps & ButtonProps;
 
-const { title, variant = "primary" } = Astro.props as CombinatedProps;
+const { title, variant = "primary", to } = Astro.props as CombinatedProps;
 
 const className = `
   relative overflow-hidden text-2xl font-bungee font-bold mb-4 px-3 py-2 rounded-lg shadow-inner hover:cursor-pointer group
@@ -13,11 +13,21 @@ const className = `
       : "text-white bg-black shadow-gray-400"
   }
 `;
+
+const spanClass =
+  "absolute z-10 -top-10 bottom-0 left-[-120%] w-[100px] h-[130px] bg-white/30 -rotate-[30deg] opacity-0 transition-all duration-500 ease-out group-hover:left-[120%] group-hover:opacity-100";
 ---
 
-<button class={className}>
-  {title}
-  <span
-    class="absolute z-10 -top-10 bottom-0 left-[-120%] w-[100px] h-[130px] bg-white/30 -rotate-[30deg] opacity-0 transition-all duration-500 ease-out group-hover:left-[120%] group-hover:opacity-100"
-  ></span>
-</button>
+{
+  to ? (
+    <a href={to} class={className}>
+      {title}
+      <span class={spanClass} />
+    </a>
+  ) : (
+    <button class={className}>
+      {title}
+      <span class={spanClass} />
+    </button>
+  )
+}

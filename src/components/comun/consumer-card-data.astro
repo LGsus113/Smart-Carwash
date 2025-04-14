@@ -2,7 +2,7 @@
 import type { ConsumerCardProps } from "@src/utils/type-props";
 import Boton from "@src/components/comun/button-content.astro";
 
-const { item, varible = "flex" } = Astro.props as ConsumerCardProps;
+const { item, varible = "flex", indice } = Astro.props as ConsumerCardProps;
 
 const className =
   "bg-white rounded-xl flex flex-col border border-gray-200 hover:shadow-xl transition-all duration-100 ease-in";
@@ -32,7 +32,7 @@ const className =
       </section>
     </div>
   ) : (
-    <a href={item.link}>
+    <a id={`card-${indice}`}>
       <div class:list={[className, "gap-2 p-6 hover:-translate-y-1"]}>
         <item.icon class="size-12 text-primary" />
         <h2 class="font-bungee font-light text-xl text-gray-900">
