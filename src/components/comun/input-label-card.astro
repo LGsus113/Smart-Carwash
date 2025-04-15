@@ -1,20 +1,18 @@
 ---
 import type { InputLabelCardProps, TitleProps } from "@src/utils/type-props";
-
 import Container from "@src/components/comun/contener-div.astro";
 
 type CombinatedProps = TitleProps & InputLabelCardProps;
-
 const { title, type, varible = "type" } = Astro.props as CombinatedProps;
 
 const centered =
   varible === "textarea" ? "max-h-11 items-start" : "items-center";
 ---
 
-<Container class="flex-col gap-2 md:gap-1 text-start">
+<Container class="flex-col gap-2 text-start">
   <label
     for={title}
-    class="w-full text-uni-secondary font-bungee text-lg md:text-xs font-semibold uppercase grid contener-input-label"
+    class="w-full text-uni-secondary font-bungee text-lg font-semibold uppercase grid contener-input-label"
   >
     {
       varible === "textarea" ? (
@@ -23,7 +21,7 @@ const centered =
           name={title}
           rows="4"
           required
-          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 md:px-3 md:py-1 focus:outline-none focus:border-primary"
+          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
           placeholder=" "
         />
       ) : (
@@ -32,14 +30,14 @@ const centered =
           id={title}
           name={title}
           required
-          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 md:px-3 md:py-1 focus:outline-none focus:border-primary"
+          class="input-textarea font-sans focused-selector w-full bg-white rounded-2xl border-2 border-uni-secondary/30 px-4 py-2 focus:outline-none focus:border-primary"
           placeholder=" "
         />
       )
     }
     <span
       class:list={[
-        "input-textarea z-50 w-max h-full ml-4 p-2 md:p-1 md:text-base flex origin-[left_center] transition-all duration-200 pointer-events-none",
+        "input-textarea z-50 w-max h-full ml-4 p-2 flex origin-[left_center] transition-all duration-200 pointer-events-none",
         centered,
       ]}
     >

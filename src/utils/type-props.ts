@@ -1,6 +1,10 @@
 //Props para componente page-base.astro
 type AstroComponent = () => Promise<{ html: string }>;
 
+export interface ClassProps {
+  class?: string;
+}
+
 export interface BaseProps {
   MainComponent: AstroComponent;
 }
@@ -8,7 +12,6 @@ export interface BaseProps {
 // Props para componente anchor.astro
 export interface AnchorProps {
   href: string;
-  className: string;
 }
 
 // Props para componente button-content.astro
@@ -34,7 +37,6 @@ export interface ConsumerCardProps {
 
 // Props para componente contener-div.astro
 export interface ContenerDivProps {
-  class?: string;
   varible?: "flex" | "grid";
 }
 
@@ -86,13 +88,11 @@ export interface TitleProps {
 // Props para componente section-scheme.astro
 export interface SectionSchemeProps {
   id: string;
-  className: string;
 }
 
 // Props para componente list-contact.astro
 export interface ListContactProps {
   description?: string;
-  class?: string;
   items?: { icon: any; label: string; link?: string }[];
 }
 

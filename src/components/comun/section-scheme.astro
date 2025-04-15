@@ -1,7 +1,9 @@
 ---
-import type { SectionSchemeProps } from "@src/utils/type-props";
+import type { SectionSchemeProps, ClassProps } from "@src/utils/type-props";
 
-const { id, className } = Astro.props as SectionSchemeProps;
+type CombinatedProps = SectionSchemeProps & ClassProps;
+
+const { id, class: className } = Astro.props as CombinatedProps;
 ---
 
 <section id={id} class:list={["w-full flex items-center", className]}>

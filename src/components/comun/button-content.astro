@@ -1,12 +1,21 @@
 ---
-import type { ButtonProps, TitleProps } from "@src/utils/type-props";
+import type {
+  ButtonProps,
+  TitleProps,
+  ClassProps,
+} from "@src/utils/type-props";
 
-type CombinatedProps = TitleProps & ButtonProps;
+type CombinatedProps = TitleProps & ButtonProps & ClassProps;
 
-const { title, variant = "primary", to } = Astro.props as CombinatedProps;
+const {
+  class: useClass = "mb-4",
+  title,
+  variant = "primary",
+  to,
+} = Astro.props as CombinatedProps;
 
 const className = `
-  relative overflow-hidden text-2xl md:text-lg font-bungee font-bold mb-4 md:mb-1 px-3 py-2 rounded-lg shadow-inner hover:cursor-pointer group
+  relative overflow-hidden text-2xl font-bungee font-bold px-3 py-2 rounded-lg shadow-inner hover:cursor-pointer group
   ${
     variant === "primary"
       ? "text-[#131413] bg-primary border border-primary shadow-white/90"
@@ -20,12 +29,12 @@ const spanClass =
 
 {
   to ? (
-    <a href={to} class={className}>
+    <a href={to} class:list={[className, useClass]}>
       {title}
       <span class={spanClass} />
     </a>
   ) : (
-    <button class={className}>
+    <button class:list={[className, useClass]}>
       {title}
       <span class={spanClass} />
     </button>

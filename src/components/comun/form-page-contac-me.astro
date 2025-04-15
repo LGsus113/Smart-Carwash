@@ -4,15 +4,17 @@ import ButtonContent from "@src/components/comun/button-content.astro";
 import H1Title from "@src/components/comun/h1-title.astro";
 ---
 
-<form class="size-full p-5 md:p-2 text-center">
+<form class="size-full p-5 text-center">
   <H1Title title="Evíanos un mensaje" color="text-primary" size="text-3xl" />
 
-  <div class="w-full h-[calc(100%-35px)] flex flex-col items-center justify-between gap-2 md:pt-1 md:mt-1">
-    <div class="w-full h-auto flex flex-col justify-center items-center gap-4 md:gap-3.5 md:mt-2">
+  <div
+    class="w-full h-[calc(100%-35px)] flex flex-col items-center justify-between mt-3 gap-2"
+  >
+    <div class="w-full h-auto flex flex-col justify-center items-center gap-4">
       <InputLabelCard title="Nombre" type="text" />
       <InputLabelCard title="E-mail" type="email" />
       <InputLabelCard title="Mensaje" varible="textarea" />
     </div>
-    <ButtonContent title="Enviar" variant="primary" />
+    <ButtonContent class="mb-0" title="Enviar" variant="primary" />
   </div>
 </form>

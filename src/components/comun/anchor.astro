@@ -1,7 +1,9 @@
 ---
-import type { AnchorProps } from "@src/utils/type-props";
+import type { AnchorProps, ClassProps } from "@src/utils/type-props";
 
-const { href, className } = Astro.props as AnchorProps;
+type combinatedProps = AnchorProps & ClassProps;
+
+const { href, class: className } = Astro.props as combinatedProps;
 ---
 
 <a href={href} target="_blank" rel="noopener noreferrer" class={className}>

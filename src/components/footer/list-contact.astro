@@ -1,7 +1,11 @@
 ---
-import type { ListContactProps, TitleProps } from "@src/utils/type-props";
+import type {
+  ListContactProps,
+  TitleProps,
+  ClassProps,
+} from "@src/utils/type-props";
 
-type CombinatedProps = ListContactProps & TitleProps;
+type CombinatedProps = ListContactProps & TitleProps & ClassProps;
 
 const {
   class: className,

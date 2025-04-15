@@ -1,7 +1,9 @@
 ---
-import type { ContenerDivProps } from "@src/utils/type-props";
+import type { ContenerDivProps, ClassProps } from "@src/utils/type-props";
 
-const { class: className, varible = "flex" } = Astro.props as ContenerDivProps;
+type CombinatedProps = ContenerDivProps & ClassProps;
+
+const { class: className, varible = "flex" } = Astro.props as CombinatedProps;
 ---
 
 <div class:list={["w-4/5 h-auto", className, varible]}>
