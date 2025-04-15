@@ -1,5 +1,13 @@
+---
+import type { ZPositionProps } from "@src/utils/type-props";
+const { zposition } = Astro.props as ZPositionProps;
+---
+
 <!-- Usar la etiqueta relative para que funcione el efecto de sombra en los contenedores. -->
 <div
-  class="rounded-xl absolute inset-0 shadow-inner shadow-black pointer-events-none"
+  class:list={[
+    "rounded-xl absolute inset-0 shadow-inner shadow-black pointer-events-none",
+    zposition,
+  ]}
 >
 </div>

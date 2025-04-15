@@ -23,14 +23,22 @@ export interface ButtonProps {
 }
 
 // Props para componente consumer-card-data.astro
+interface Attributos {
+  duración: string;
+  precio: string;
+  garantía: string;
+}
+
+export interface ItemProps {
+  title: string;
+  description: string;
+  icon: any;
+  imageLink: string;
+  atributos: Attributos;
+}
+
 export interface ConsumerCardProps {
-  item: {
-    title: string;
-    description: string;
-    icon: any;
-    link: string;
-    imageLink: string;
-  };
+  item: ItemProps;
   varible?: "flex" | "grid";
   indice?: number;
 }
@@ -118,4 +126,24 @@ export interface LayoutProps {
 export interface DialogElementProps {
   id: string;
   tipo?: "form" | "multipoint";
+}
+
+//Props para componente shadow-inner-image.astro
+type ZIndex =
+  | "-z-50"
+  | "-z-40"
+  | "-z-30"
+  | "-z-20"
+  | "-z-10"
+  | "z-0"
+  | "z-10"
+  | "z-20"
+  | "z-30"
+  | "z-40"
+  | "z-50"
+  | "z-auto";
+type ZIndexCustom = `z-[${number}]` | `-z-[${number}]`;
+
+export interface ZPositionProps {
+  zposition?: ZIndex | ZIndexCustom;
 }

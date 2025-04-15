@@ -18,35 +18,65 @@ export const SERVICES_DATA = [
     imageLink: Pintura.src,
     title: "Planchado y Pintura",
     description: "Reparación profesional de abolladuras y pintura",
+    atributos: {
+      duración: "2 días",
+      precio: "Desde S/. 400",
+      garantía: "1 año",
+    },
   },
   {
     icon: Security,
     imageLink: Polarizado.src,
     title: "Polarizado",
     description: "Proteción con películas de alta calidad",
+    atributos: {
+      duración: "1-3 horas",
+      precio: "Desde S/. 80",
+      garantía: "6 meses",
+    },
   },
   {
     icon: Spray,
     imageLink: Tapiceria.src,
     title: "Tapizado y Limpieza",
     description: "Limpieza profunda del interior",
+    atributos: {
+      duración: "12 horas",
+      precio: "Desde S/. 150",
+      garantía: "6 meses",
+    },
   },
   {
     icon: Diamond,
     imageLink: Pulido.src,
     title: "Pulido y Abrillantado",
     description: "Acabado brillante y protección duradera",
+    atributos: {
+      duración: "4 horas",
+      precio: "Desde S/. 100",
+      garantía: "9 meses",
+    },
   },
   {
     icon: Car,
     imageLink: Descontaminacion.src,
     title: "Descontaminación",
     description: "Eliminación de residuos metálicos",
+    atributos: {
+      duración: "5 horas",
+      precio: "Desde S/. 90",
+      garantía: "3 meses",
+    },
   },
   {
     icon: Tool,
     imageLink: Mecanica.src,
     title: "Mecánica Básica",
     description: "Mantenimiento preventivo",
+    atributos: {
+      duración: "2 días",
+      precio: "Desde S/. 150",
+      garantía: "3 meses",
+    },
   },
 ] as const;

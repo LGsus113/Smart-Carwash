@@ -1,0 +1,16 @@
+---
+import H1Title from "@src/components/comun/h1-title.astro";
+
+import type { ItemProps } from "@src/utils/type-props";
+
+const { title, description, imageLink, atributos } = Astro.props as ItemProps;
+
+console.log(Astro.props);
+---
+
+<div class="size-full flex flex-col">
+  <div class="basis-0 grow-1 bg-red-50"></div>
+  <div class="basis-0 grow-1 bg-blue-50">
+    <h1>{title}</h1>
+  </div>
+</div>
