@@ -23,7 +23,7 @@ export interface ButtonProps {
 }
 
 // Props para componente consumer-card-data.astro
-interface Attributos {
+export interface AttributosProps {
   duración: string;
   precio: string;
   garantía: string;
@@ -34,7 +34,7 @@ export interface ItemProps {
   description: string;
   icon: any;
   imageLink: string;
-  atributos: Attributos;
+  atributos: AttributosProps;
 }
 
 export interface ConsumerCardProps {
@@ -146,4 +146,10 @@ type ZIndexCustom = `z-[${number}]` | `-z-[${number}]`;
 
 export interface ZPositionProps {
   zposition?: ZIndex | ZIndexCustom;
+}
+
+//Props para article-data-icon.astro
+export interface IconProps {
+  value: string;
+  color: string;
 }

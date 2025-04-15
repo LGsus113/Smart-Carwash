@@ -1,0 +1,22 @@
+---
+import type { IconProps, TitleProps } from "@src/utils/type-props";
+
+type CombinatedProps = IconProps & TitleProps;
+
+const { title, value, color } = Astro.props as CombinatedProps;
+---
+
+<article
+  class:list={[
+    "basis-0 grow-1 p-3 rounded-lg flex gap-5 items-center justify-center",
+    color,
+  ]}
+>
+  <div class="h-full w-10">
+    <slot />
+  </div>
+  <div class="basis-o grow-1">
+    <h2>{title}</h2>
+    <p>{value}</p>
+  </div>
+</article>
