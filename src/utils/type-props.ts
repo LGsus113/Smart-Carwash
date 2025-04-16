@@ -35,6 +35,7 @@ export interface ItemProps {
   icon: any;
   imageLink: string;
   atributos: AttributosProps;
+  imagesCarousel: string[];
 }
 
 export interface ConsumerCardProps {
