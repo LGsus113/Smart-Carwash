@@ -18,3 +18,8 @@ const { title, description, MainComponent } = Astro.props as CombinatedType;
     <Finaly slot="footer" />
   </Disposicion>
 </Layout>
+
+<script>
+  import { setupDialogs } from "@src/utils/dialog-handler";
+  setupDialogs();
+</script>

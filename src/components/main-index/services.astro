@@ -6,16 +6,16 @@ import Consumer from "@src/components/comun/consumer-card-data.astro";
 import { SERVICES_DATA } from "@src/utils/services";
 ---
 
-<SectionScheme id="servicios" class="flex-col justify-center my-20">
-  <h1 class="text-4xl font-bungee-inline tracking-tight mb-10">
+<SectionScheme id="servicios" class="flex-col justify-center my-16">
+  <h1 class="text-4xl font-bungee-inline tracking-tight mb-5 animate-on-scroll">
     Nuestros Servicios
   </h1>
-  <div class="w-4/5 h-auto grid grid-cols-3 gap-6 p-4 mb-10">
+  <div class="w-4/5 h-auto grid grid-cols-3 gap-6 p-4 mb-5 animate-on-scroll">
     {
       SERVICES_DATA.map((item, index) => (
         <Consumer item={item} indice={index} />
       ))
     }
   </div>
-  <ButtonContent title="Ver todos" to="/servicios" />
+  <ButtonContent title="Ver todos" to="/servicios" class="animate-on-scroll" />
 </SectionScheme>

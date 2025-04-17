@@ -16,6 +16,29 @@
 }
 
 @layer utilities {
+  .animate-on-scroll {
+    view-timeline-name: --scrollEffect;
+    view-timeline-axis: block;
+
+    animation-timeline: --scrollEffect;
+    animation-name: show;
+
+    animation-range: entry 15% cover 30%;
+    animation-fill-mode: both;
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: translateY(120px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes bounce {
     100% {
       top: -12px;
