@@ -2,29 +2,75 @@
 import Clock from "@src/assets/icon-svg/clock.svg";
 import Money from "@src/assets/icon-svg/money.svg";
 import Garantia from "@src/assets/icon-svg/garantia.svg";
+import Left from "@src/assets/icon-svg/left.svg";
+import Right from "@src/assets/icon-svg/right.svg";
 
 import H1Title from "@src/components/comun/h1-title.astro";
 import ArticleDataIcon from "@src/components/main-index/package/article-data-icon.astro";
 import Button from "@src/components/comun/button-content.astro";
+import Mascara from "@src/components/comun/mascara.astro";
 
 import type { ItemProps, AttributosProps } from "@src/utils/type-props";
 
-const { item } = Astro.props;
+const { item, indice } = Astro.props;
 const { title, description, atributos, imagesCarousel } = item as ItemProps;
 const { duración, garantía, precio } = atributos as AttributosProps;
 ---
 
 <div class="size-full flex flex-col">
-  <div id="carousel-track" class="basis-0 grow-1 relative overflow-hidden">
+  <div
+    id={`carousel-track-${indice}`}
+    class="basis-0 grow-1 relative overflow-hidden"
+    data-carousel-index
+    data-indice={indice}
+  >
     {
       imagesCarousel.map((image, index) => (
         <img
           src={image}
-          alt={`imagen ${index} del carrucel`}
-          class="size-full object-cover object-center absolute transition-all duration-1000 ease-in-out"
+          alt={`imagen ${index} del carrusel`}
+          class:list={[
+            "absolute size-full object-cover object-center transition-all duration-1000 ease-in-out",
+            index === 0 ? "opacity-100 z-10" : "opacity-0 z-20",
+          ]}
+          data-index={index}
         />
       ))
     }
+    <div
+      class="absolute w-full h-auto z-40 -bottom-1 flex gap-1 justify-center items-center px-2"
+    >
+      <button
+        data-direction="left"
+        class="bg-white rounded-lg p-1 flex justify-center items-center text-black border border-white shadow-inner shadow-black/60 hover:cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
+      >
+        <Left />
+      </button>
+      <div
+        id={`carousel-dots-${indice}`}
+        class="size-auto flex gap-2 bg-white px-4 py-4 rounded-t-xl"
+      >
+        {
+          imagesCarousel.map((_, index) => (
+            <span
+              class:list={[
+                "inline-block size-4 rounded-full bg-black/80 hover:bg-black transition-all duration-100 shadow-inner shadow-white/70 border border-white",
+              ]}
+              data-dot-index={index}
+            />
+          ))
+        }
+      </div>
+      <button
+        data-direction="right"
+        class="bg-white rounded-lg p-1 flex justify-center items-center text-black border border-white shadow-inner shadow-black/60 hover:cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
+      >
+        <Right />
+      </button>
+    </div>
+    <div class="size-full absolute z-30 -bottom-7">
+      <Mascara direction="bottom" />
+    </div>
   </div>
   <div class="basis-0 grow-1 flex flex-col p-7">
     <div class="w-full h-auto flex flex-col gap-5 text-center">
@@ -49,3 +95,195 @@ const { duración, garantía, precio } = atributos as AttributosProps;
     </div>
   </div>
 </div>
+
+<script>
+  import { $, $$ } from "@src/utils/dom-selector";
+
+  const triggers = $$("[data-dialog-target]");
+  const carouselIntervalMap = new Map();
+  const carouselTimeoutMap = new Map();
+
+  function actualizarDots(dots: NodeListOf<HTMLElement>, currenIndex: number) {
+    dots.forEach((dot, index) => {
+      if (index === currenIndex) {
+        dot.classList.add("opacity-100", "scale-100");
+        dot.classList.remove("opacity-50", "scale-90");
+      } else {
+        dot.classList.remove("opacity-100", "scale-100");
+        dot.classList.add("opacity-50", "scale-90");
+      }
+    });
+  }
+
+  function moveCarousel(carousel: HTMLElement, direccion = 1) {
+    const images = $$("img", carousel);
+    const dots = $$(`[id='carousel-dots-${carousel.dataset.indice}'] span`);
+    if (!images.length) return;
+
+    detenerCarousel(carousel.id);
+    const existingTimeout = carouselTimeoutMap.get(carousel.id);
+    if (existingTimeout) {
+      clearTimeout(existingTimeout);
+      carouselTimeoutMap.delete("opacity-100");
+    }
+
+    let currentIndex = [...images].findIndex((img) =>
+      img.classList.contains("opacity-100")
+    );
+    currentIndex = (currentIndex + direccion + images.length) % images.length;
+
+    images.forEach((img, index) => {
+      img.classList.remove("opacity-100", "z-20");
+      img.classList.add("opacity-0", "z-10");
+      if (index === currentIndex) {
+        img.classList.add("opacity-100", "z-20");
+      }
+    });
+
+    actualizarDots(dots, currentIndex);
+
+    const timeoutId = setTimeout(() => {
+      iniciarCarousel(carousel, 2000, currentIndex);
+      carouselTimeoutMap.delete(carousel.id);
+    }, 3000);
+    carouselTimeoutMap.set(carousel.id, timeoutId);
+  }
+
+  function iniciarCarousel(
+    carousel: HTMLElement,
+    intervalo = 3000,
+    startIndex = 0
+  ) {
+    const images = $$("img", carousel);
+    const dots = $$(`[id='carousel-dots-${carousel.dataset.indice}'] span`);
+    if (!images.length) return;
+
+    let currentIndex = startIndex;
+
+    const cambiarImagen = () => {
+      images.forEach((img, index) => {
+        img.classList.remove("opacity-100", "z-20");
+        img.classList.add("opacity-0", "z-10");
+
+        if (index === currentIndex) {
+          img.classList.add("opacity-100", "z-20");
+        }
+      });
+
+      actualizarDots(dots, currentIndex);
+      currentIndex = (currentIndex + 1) % images.length;
+    };
+
+    activarDotListeners(carousel);
+    cambiarImagen();
+
+    const intervalId = setInterval(cambiarImagen, intervalo);
+    carouselIntervalMap.set(carousel.id, intervalId);
+  }
+
+  function detenerCarousel(carouselId: string) {
+    const intervalId = carouselIntervalMap.get(carouselId);
+    if (intervalId) {
+      clearInterval(intervalId);
+      carouselIntervalMap.delete(carouselId);
+    }
+  }
+
+  function reiniciarCarouselVisual(carousel: HTMLElement) {
+    const images = $$("img", carousel);
+    const dots = $$(`[id='carousel-dots-${carousel.dataset.indice}'] span`);
+
+    images.forEach((img, index) => {
+      if (index === 0) {
+        img.classList.remove("opacity-0", "z-10");
+        img.classList.add("opacity-100", "z-20");
+      } else {
+        img.classList.remove("opacity-100", "z-20");
+        img.classList.add("opacity-0", "z-10");
+      }
+    });
+
+    actualizarDots(dots, 0);
+  }
+
+  function activarDotListeners(carousel: HTMLElement) {
+    const dots = $$(`[id='carousel-dots-${carousel.dataset.indice}'] span`);
+    const images = $$("img", carousel);
+
+    if (!dots.length || !images.length) return;
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        detenerCarousel(carousel.id);
+
+        const timeoutId = carouselTimeoutMap.get(carousel.id);
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          carouselTimeoutMap.delete(carousel.id);
+        }
+
+        images.forEach((img, i) => {
+          img.classList.remove("opacity-100", "z-20");
+          img.classList.add("opacity-0", "z-10");
+          if (i === index) {
+            img.classList.add("opacity-100", "z-20");
+          }
+        });
+
+        actualizarDots(dots, index);
+
+        const newTimeoutId = setTimeout(() => {
+          iniciarCarousel(carousel, 2000, index);
+          carouselTimeoutMap.delete(carousel.id);
+        }, 3000);
+        carouselTimeoutMap.set(carousel.id, newTimeoutId);
+      });
+    });
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const dialogId = trigger.getAttribute("data-dialog-target");
+      const indice = dialogId?.split("-").pop();
+      const carouselId = `carousel-track-${indice}`;
+
+      const carousel = $(`#${carouselId}`);
+      const dialog = $(`#${dialogId}`);
+      if (!dialog || !carousel) return;
+
+      detenerCarousel(carousel.id);
+      iniciarCarousel(carousel);
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.attributeName === "open" &&
+            !dialog.hasAttribute("open")
+          ) {
+            detenerCarousel(carousel.id);
+            reiniciarCarouselVisual(carousel);
+
+            const timeoutId = carouselTimeoutMap.get(carousel.id);
+            if (timeoutId) {
+              clearTimeout(timeoutId);
+              carouselTimeoutMap.delete(carousel.id);
+            }
+          }
+        });
+      });
+      observer.observe(dialog, { attributes: true });
+
+      const btnLeft = $("[data-direction='left']", carousel);
+      const btnRight = $("[data-direction='right']", carousel);
+
+      if (btnLeft && !btnLeft.dataset.initialized) {
+        btnLeft.addEventListener("click", () => moveCarousel(carousel, -1));
+        btnLeft.dataset.initialized = "true";
+      }
+      if (btnRight && !btnRight.dataset.initialized) {
+        btnRight.addEventListener("click", () => moveCarousel(carousel, 1));
+        btnRight.dataset.initialized = "true";
+      }
+    });
+  });
+</script>
