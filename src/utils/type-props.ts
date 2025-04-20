@@ -126,7 +126,7 @@ export interface LayoutProps {
 // Props para componente dialog-element.astro
 export interface DialogElementProps {
   id: string;
-  tipo?: "form" | "multipoint";
+  tipo?: "form" | "multipoint" | "workpoint";
 }
 
 //Props para componente shadow-inner-image.astro

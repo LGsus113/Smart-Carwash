@@ -4,6 +4,7 @@ import Instagram from "@src/assets/redes-svg/instagram.svg";
 import Tiktok from "@src/assets/redes-svg/tiktok.svg";
 import Phone from "@src/assets/redes-svg/phone.svg";
 import Ubication from "@src/assets/redes-svg/ubication.svg";
+import Work from "@src/assets/icon-svg/work.svg";
 
 export const CONTACT_INFO = [
   {
@@ -18,6 +19,11 @@ export const CONTACT_INFO = [
     icon: Email,
     label: "smartcarwashdetailing@gmail.com",
   },
+  {
+    icon: Work,
+    label: "Trabaja con Nosotros",
+    link: "/contacto",
+  }
 ];
 
 export const SOCIAL_MEDIA = [

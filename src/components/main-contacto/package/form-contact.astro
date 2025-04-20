@@ -2,20 +2,33 @@
 import InputLabelCard from "@src/components/comun/input-label-card.astro";
 import H1Title from "@src/components/comun/h1-title.astro";
 import ButtonContent from "@src/components/comun/button-content.astro";
+import DialogElement from "@src/components/dialog/dialog-element.astro";
 ---
 
 <div
   class="flex-grow basis-0 flex flex-col items-center justify-center gap-5 text-center"
 >
-  <H1Title title="Evíanos un mensaje" color="text-primary" size="text-4xl" />
-  <form
-    action="https://formspree.io/f/xjvjlqzj"
-    method="POST"
-    class="w-full h-auto flex flex-col items-center justify-center gap-6 animate-on-scroll"
+  <div class="w-full h-[20vh] flex flex-col justify-center items-center">
+    <H1Title title="¡Únete a nuestro equipo" color="text-primary" size="text-4xl" />
+    <p class="text-xl font-medium text-uni-secondary">
+      Estamos buscando personas apasionadas por el servicio y el detalle, si crees contar con ello unetenos haciendo 
+      <span data-dialog-target="working-me-dialog" class="underline text-primary hover:text-orange-300 hover:cursor-pointer" role="button">click aquí</span>.
+    </p>
+    <DialogElement id="working-me-dialog" tipo="workpoint">Hola mundo... te habla LGsus, recapichulemos.</DialogElement>
+  </div>
+  <div
+    class="w-full flex-grow flex flex-col items-center justify-center gap-5"
   >
-    <InputLabelCard title="Nombre" type="text" />
-    <InputLabelCard title="E-mail" type="email" />
-    <InputLabelCard title="Mensaje" varible="textarea" />
-    <ButtonContent title="Enviar" class="animate-on-scroll" />
-  </form>
+    <H1Title title="Evíanos un mensaje" color="text-primary" size="text-4xl" />
+    <form
+      action="https://formspree.io/f/xjvjlqzj"
+      method="POST"
+      class="w-full h-auto flex flex-col items-center justify-center gap-6 animate-on-scroll"
+    >
+      <InputLabelCard title="Nombre" type="text" />
+      <InputLabelCard title="E-mail" type="email" />
+      <InputLabelCard title="Mensaje" varible="textarea" />
+      <ButtonContent title="Enviar" class="animate-on-scroll" />
+    </form>
+  </div>
 </div>
